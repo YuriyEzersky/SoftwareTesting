@@ -39,7 +39,7 @@ class NewGroups(unittest.TestCase):
         return True
     
     def is_alert_present(self):
-        try: self.wd.switch_to_alert()
+        try: self.wd.switch_to_alert() #устаревший метод, нужно будет рефакторить
         except NoAlertPresentException as e: return False
         return True
     
