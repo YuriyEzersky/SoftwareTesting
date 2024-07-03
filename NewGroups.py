@@ -20,7 +20,7 @@ class NewGroups(unittest.TestCase):
     def test_empty_groups(self):
         wd = self.open_home_page()
         self.login(wd, "admin", "secret")
-        self.create_empty_group(wd)
+        self.create_empty_group(wd, Group("", "", ""))
         self.go_home(wd)
 
     def go_home(self, wd):
@@ -39,17 +39,17 @@ class NewGroups(unittest.TestCase):
         wd.find_element(By.NAME, "group_footer").send_keys(group.footer)
         wd.find_element(By.NAME, "submit").click()
 
-    def create_empty_group(self, wd, NewGrName="", NewGrHeader="", NewGrFooter=""):
+    def create_empty_group(self, wd, group):
         wd.find_element(By.NAME, "new").click()
         wd.find_element(By.NAME, "group_name").click()
         wd.find_element(By.NAME, "group_name").clear()
-        wd.find_element(By.NAME, "group_name").send_keys(NewGrName)
+        wd.find_element(By.NAME, "group_name").send_keys(group.name)
         wd.find_element(By.NAME, "group_header").click()
         wd.find_element(By.NAME, "group_header").clear()
-        wd.find_element(By.NAME, "group_header").send_keys(NewGrHeader)
+        wd.find_element(By.NAME, "group_header").send_keys(group.header)
         wd.find_element(By.NAME, "group_footer").click()
         wd.find_element(By.NAME, "group_footer").clear()
-        wd.find_element(By.NAME, "group_footer").send_keys(NewGrFooter)
+        wd.find_element(By.NAME, "group_footer").send_keys(group.footer)
         wd.find_element(By.NAME, "submit").click()
 
     def login(self, wd, Login, Password):
