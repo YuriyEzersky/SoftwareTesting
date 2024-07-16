@@ -63,6 +63,11 @@ class ContactHelper:
         wd.find_element(By.NAME, "byear").send_keys(contact.byear)
         wd.find_element(By.XPATH, "//div[@id='content']/form/input[20]").click()
 
+    def delete_first_contact(self):
+        wd = self.open_contact_page()
+        wd.find_element(By.NAME, "selected[]").click()
+        wd.find_element(By.CSS_SELECTOR, '[value="Delete"]').click() #из документации по Selenium
+
     def go_home(self):
         wd = self.app.wd
         wd.find_element(By.LINK_TEXT, "home").click()
